@@ -3,12 +3,11 @@ package com.company.controller;
 import com.company.model.Product;
 import com.company.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
@@ -27,7 +26,15 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
+    @PostMapping(value = "")
+    public Map<String, Object> createProduct(@RequestParam(value = "id") Long id,
+            @RequestParam(value = "name") String name, @RequestParam(value = "price") Integer price) {
 
+        productService.createProduct(id, name, price);
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", "Product added");
+        return map;
+    }
 
 }

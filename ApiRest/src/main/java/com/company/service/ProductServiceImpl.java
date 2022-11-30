@@ -36,5 +36,10 @@ public class ProductServiceImpl implements ProductService{
         return null;
     }
 
+    @Override
+    public void createProduct(Long productId, String productName, Integer price) {
+        products.add(new Product(productId, productName, price));
+    }
+
 
 }
